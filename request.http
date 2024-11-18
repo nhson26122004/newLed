@@ -1,0 +1,7 @@
+###
+POST localhost:8080/distance
+Content-Type: application/json
+
+{
+    "distance": "100"
+}

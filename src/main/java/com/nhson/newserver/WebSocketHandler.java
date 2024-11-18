@@ -2,6 +2,7 @@ package com.nhson.newserver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -9,11 +10,12 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebSocketHandler.class);
 
-    private static float distanceThreshold;
+    private static float distanceThreshold = 9999;
     private static final CopyOnWriteArrayList<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 
     @Override
@@ -51,6 +53,15 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 sessions.remove(session);
             }
         }
+    }
+
+    public float getDistanceThreshold() {
+        return distanceThreshold;
+    }
+
+    public void setDistanceThreshold(float distanceThreshold) throws IOException {
+        WebSocketHandler.distanceThreshold = distanceThreshold;
+        broadcastLedStatus();
     }
 
 }
