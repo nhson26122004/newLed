@@ -7,6 +7,8 @@ WORKDIR /app
 # Copy toàn bộ mã nguồn vào thư mục làm việc
 COPY . /app
 
+RUN chmod +x mvnw
+
 # Build ứng dụng với Maven Wrapper
 RUN ./mvnw clean package
 
