@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -23,13 +24,14 @@ public class NewServerApplication {
         SpringApplication.run(NewServerApplication.class, args);
     }
 
-    @GetMapping("/distance")
+    @GetMapping("/get-distance")
     public String getDistance() {
         return String.valueOf(webSocketHandler.getDistanceThreshold());
     }
 
-    @PostMapping("/distance")
-    public void setDistance(Map<String,String> distance) throws IOException {
-        webSocketHandler.setDistanceThreshold(Float.parseFloat(distance.get("distance")));
+    @PostMapping("/set-distance")
+    public void setDistance(@RequestBody Map<String,String> distance) throws IOException {
+        float distanceThreshold = Float.valueOf(distance.get("distance"));
+        webSocketHandler.setDistanceThreshold(distanceThreshold);
     }
 }

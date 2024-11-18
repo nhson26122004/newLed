@@ -1,7 +1,7 @@
 ###
-POST localhost:8080/distance
+POST localhost:8080/set-distance
 Content-Type: application/json
 
 {
-    "distance": "100"
+    "distance": "100.0"
 }
