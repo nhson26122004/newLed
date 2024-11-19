@@ -5,3 +5,16 @@ Content-Type: application/json
 {
     "distance": "100.0"
 }
+
+
+###
+POST localhost:8080/led-status
+Content-Type: application/json
+
+{
+    "status": "true"
+}
+
+###
+GET localhost:8080/led-status
+

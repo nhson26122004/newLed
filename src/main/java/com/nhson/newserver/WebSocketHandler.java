@@ -14,6 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class WebSocketHandler extends TextWebSocketHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebSocketHandler.class);
+    private static boolean onLed = false;
 
     private static float distanceThreshold = 9999;
     private static CopyOnWriteArrayList<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
@@ -57,6 +58,14 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     public float getDistanceThreshold() {
         return distanceThreshold;
+    }
+
+    public boolean getLedStatus() {
+        return onLed;
+    }
+
+    public void setLedStatus(boolean onLed) {
+        WebSocketHandler.onLed = onLed;
     }
 
     public void setDistanceThreshold(float distanceThreshold) throws IOException {

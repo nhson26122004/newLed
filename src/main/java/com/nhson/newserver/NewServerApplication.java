@@ -34,4 +34,15 @@ public class NewServerApplication {
         float distanceThreshold = Float.valueOf(distance.get("distance"));
         webSocketHandler.setDistanceThreshold(distanceThreshold);
     }
+
+    @GetMapping("/led-status")
+    public String getLedStatus() {
+        return String.valueOf(webSocketHandler.getLedStatus());
+    }
+
+    @PostMapping("/led-status")
+    public void setLedStatus(@RequestBody Map<String,String> led) throws IOException {
+        boolean onLed = Boolean.valueOf(led.get("led"));
+        webSocketHandler.setLedStatus(onLed);
+    }
 }
