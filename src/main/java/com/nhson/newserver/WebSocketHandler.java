@@ -16,7 +16,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     private static final Logger LOG = LoggerFactory.getLogger(WebSocketHandler.class);
 
     private static float distanceThreshold = 9999;
-    private static final CopyOnWriteArrayList<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
+    private static CopyOnWriteArrayList<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
