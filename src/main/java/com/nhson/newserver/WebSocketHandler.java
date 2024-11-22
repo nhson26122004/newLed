@@ -23,7 +23,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
         LOG.info("New WebSocket connection established. Total clients: {}", sessions.size());
-        session.sendMessage(new TextMessage(String.valueOf(distanceThreshold)));
+        session.sendMessage(new TextMessage("{led:" + String.valueOf(onLed) + " , distance:" + String.valueOf(distanceThreshold) + "}"));
     }
 
     @Override
