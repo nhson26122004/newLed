@@ -37,7 +37,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     }
 
     private void broadcastLedStatus() throws IOException {
-        TextMessage message = new TextMessage("{led:" + String.valueOf(onLed) + " , distance:" + String.valueOf(distanceThreshold) + "}");
+        TextMessage message = new TextMessage(String.valueOf(distanceThreshold));
 
         LOG.info("Broadcasting LED status to {} clients: {}", sessions.size(), message.getPayload());
 
@@ -64,9 +64,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
         return onLed;
     }
 
-    public void setLedStatus(boolean onLed) throws IOException {
+    public void setLedStatus(boolean onLed) {
         WebSocketHandler.onLed = onLed;
-        broadcastLedStatus();
     }
 
     public void setDistanceThreshold(float distanceThreshold) throws IOException {
